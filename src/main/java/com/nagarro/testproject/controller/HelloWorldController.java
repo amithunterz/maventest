@@ -12,13 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloWorldController {
 	
-	@RequestMapping("/")
+	@RequestMapping(value="/")
 	public String HomePage() {
 		return "index";
 	}
 	
-	@RequestMapping("/add")
-	public ModelAndView add(@RequestParam("t1") String n, @RequestParam("t2") String t) //(HttpServletRequest request, HttpServletResponse resp) 
+	@RequestMapping(value="/add")
+	public ModelAndView add(@RequestParam(value="t1") String n, @RequestParam(value="t2") String t) //(HttpServletRequest request, HttpServletResponse resp) 
 	{
 //		String n=request.getParameter("t1");
 //		String t=request.getParameter("t2");
@@ -34,7 +34,7 @@ public class HelloWorldController {
 	}
 	
 	/*
-	 * @RequestMapping("/next") public String nextpage() { return "next"; }
+	 * @RequestMapping(value="/next") public String nextpage() { return "next"; }
 	 */
 
 }
