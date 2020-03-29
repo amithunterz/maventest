@@ -125,7 +125,14 @@ stage ('Artifactory configuration') {
 
 
                 rtMavenRun (
-					pom: 'pom.xml',
+
+
+
+                    tool: "MAVEN_HOME", // Tool name from Jenkins configuration
+
+
+
+                    pom: 'pom.xml',
 
 
 
