@@ -46,21 +46,9 @@ pipeline
             steps 
 			{	
 
-                rtMavenDeployer 
-				(
-                    id: "MAVEN_DEPLOYER",
-                    serverId: "ArtifactoryImage",
-                    releaseRepo: "jenkins-local-maven-repo",
-                    snapshotRepo: "jenkins-local-maven-repo"
-                )
+                rtMavenDeployer (id:"MAVEN_DEPLOYER",serverId:"ArtifactoryImage",releaseRepo:"jenkins-local-maven-repo",snapshotRepo:"jenkins-local-maven-repo")
 
-                rtMavenResolver 
-				(
-                    id: "MAVEN_RESOLVER",
-                    serverId: "ArtifactoryImage",
-                    releaseRepo: "jenkins-local-maven-repo",
-                    snapshotRepo: "jenkins-local-maven-repo"
-                )
+                rtMavenResolver (id:"MAVEN_RESOLVER",serverId:"ArtifactoryImage",releaseRepo:"jenkins-local-maven-repo",snapshotRepo:"jenkins-local-maven-repo")
 				
             }
 
