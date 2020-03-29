@@ -27,9 +27,23 @@ pipeline
 				bat 'mvn test'
 			}
 		}
+	
+		stage('package stage')
+		{
+			steps
+			{
+				bat 'mvn package'
+			}
+
+		}
 
 
 
+
+
+
+
+/*
 stage ('Artifactory configuration') {
 
 
@@ -114,7 +128,7 @@ stage ('Artifactory configuration') {
 
 
 
-                    tool: "maven_3_5_4",
+                    tool: "maven_3_6_0", // Tool name from Jenkins configuration
 
 
 
@@ -175,9 +189,55 @@ stage ('Artifactory configuration') {
 
 
         }
+*/
 
 
 
+
+
+
+
+
+
+
+
+	stage('Publish'){
+		steps{
+			rtUpload (
+   serverId: 'ArtifactoryImage',
+   spec: '''{
+        "files": [
+           {
+             "pattern": "**/*.war",
+             "target": "jenkins-local-maven-repo/"
+           }
+        ]
+   }''',
+
+   buildName: 'holyFrog',
+    buildNumber: '42'
+)}}
+
+//stage('Download'){
+//steps{
+//		
+//		rtDownload (
+//   serverId: 'ArtifactoryImage',
+//    spec: '''{
+//          "files": [
+//            {
+//              "pattern": "jenkins-local-maven-repo/",
+//              "target": "target/"
+//            }
+//         ]
+//    }''',
+//
+//    buildName: 'holyFrog',
+//    buildNumber: '42'
+//)
+//	}
+//}	
+		
 
 stage('Deploy'){
 steps{
