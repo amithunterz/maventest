@@ -38,7 +38,7 @@ pipeline
 		}
 
 
-	stage('Publish'){
+	stage('Upload'){
 	steps{
 			rtUpload (
     serverId: 'ArtifactoryImage',
@@ -53,7 +53,9 @@ pipeline
  
     buildName: 'holyFrog',
     buildNumber: '42'
-)
+)}}
+stage('Download'){
+steps{
 		
 		rtDownload (
     serverId: 'ArtifactoryImage',
