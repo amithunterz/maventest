@@ -125,18 +125,11 @@ stage ('Artifactory configuration') {
 
 
                 rtMavenRun (
+					pom: 'pom.xml',
 
 
 
-                    tool: 'maven_3_6_0', // Tool name from Jenkins configuration
-
-
-
-                    pom: 'pom.xml',
-
-
-
-                    goals: 'clean install',
+                    goals: 'package,
 
 
 
