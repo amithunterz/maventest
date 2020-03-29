@@ -136,7 +136,7 @@ stage ('Artifactory configuration') {
 
 
 
-                    goals: 'package',
+                    goals: 'clean package',
 
 
 
