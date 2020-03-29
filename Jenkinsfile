@@ -28,14 +28,14 @@ pipeline
 			}
 		}
 	
-//		stage('package stage')
-//		{
-//			steps
-//			{
-//				bat 'mvn package'
-//			}
-//
-//		}
+		stage('package stage')
+		{
+			steps
+			{
+				bat 'mvn package'
+			}
+
+		}
 
 
 
@@ -43,7 +43,7 @@ pipeline
 
 
 
-
+/*
 stage ('Artifactory configuration') {
 
 
@@ -189,6 +189,7 @@ stage ('Artifactory configuration') {
 
 
         }
+*/
 
 
 
@@ -200,23 +201,22 @@ stage ('Artifactory configuration') {
 
 
 
+	stage('Upload'){
+		steps{
+			rtUpload (
+   serverId: 'ArtifactoryImage',
+   spec: '''{
+        "files": [
+           {
+             "pattern": "**/*.war",
+             "target": "jenkins-local-maven-repo/"
+           }
+        ]
+   }''',
 
-//	stage('Upload'){
-//		steps{
-//			rtUpload (
- //   serverId: 'ArtifactoryImage',
- //   spec: '''{
-  //        "files": [
- //           {
- //             "pattern": "**/*.war",
- //             "target": "jenkins-local-maven-repo/"
- //           }
- //        ]
- //   }''',
-// 
-//    buildName: 'holyFrog',
-//    buildNumber: '42'
-//)}}
+   buildName: 'holyFrog',
+    buildNumber: '42'
+)}}
 
 //stage('Download'){
 //steps{
