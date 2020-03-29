@@ -44,7 +44,7 @@ pipeline
     spec: '''{
           "files": [
             {
-              "pattern": "**\*.war",
+              "pattern": "**/*.war",
               "target": "jenkins-local-maven-repo/"
             }
          ]
