@@ -27,4 +27,162 @@ bat 'mvn package'}
 }
 
 }
+
+
+
+
+stage ('Artifactory configuration') {
+
+
+
+            steps {
+
+
+                rtMavenDeployer (
+
+
+
+                    id: "MAVEN_DEPLOYER",
+
+
+
+                    serverId: "ArtifactoryImage",
+
+
+
+                    releaseRepo: "jenkins-local-maven-repo",
+
+
+
+                    snapshotRepo: "jenkins-local-maven-repo"
+
+
+
+                )
+
+
+
+
+
+
+
+                rtMavenResolver (
+
+
+
+                    id: "MAVEN_RESOLVER",
+
+
+
+                    serverId: "ArtifactoryImage",
+
+
+
+                    releaseRepo: "jenkins-local-maven-repo",
+
+
+
+                    snapshotRepo: "jenkins-local-maven-repo"
+
+
+
+                )
+
+
+
+            }
+
+
+
+        }
+		
+		
+		stage ('Exec Maven') {
+
+
+
+            steps {
+
+
+
+                rtMavenRun (
+
+
+
+                    tool: maven_3_6_0,
+
+
+
+                    pom: 'my-demo-app/pom.xml',
+
+
+
+                    goals: 'package',
+
+
+
+                    deployerId: "MAVEN_DEPLOYER",
+
+
+
+                    resolverId: "MAVEN_RESOLVER"
+
+
+
+                )
+
+
+
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+        stage ('Publish build info') {
+
+
+
+            steps {
+
+
+
+                rtPublishBuildInfo (
+
+
+
+                    serverId: "ArtifactoryImage"
+
+
+
+                )
+
+
+
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
 }
