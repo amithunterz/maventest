@@ -54,25 +54,26 @@ pipeline
     buildName: 'holyFrog',
     buildNumber: '42'
 )}}
-stage('Download'){
-steps{
-		
-		rtDownload (
-    serverId: 'ArtifactoryImage',
-    spec: '''{
-          "files": [
-            {
-              "pattern": "jenkins-local-maven-repo/",
-              "target": "target/"
-            }
-          ]
-    }''',
 
-    buildName: 'holyFrog',
-    buildNumber: '42'
-)
-	}
-}	
+//stage('Download'){
+//steps{
+//		
+//		rtDownload (
+//   serverId: 'ArtifactoryImage',
+//    spec: '''{
+//          "files": [
+//            {
+//              "pattern": "jenkins-local-maven-repo/",
+//              "target": "target/"
+//            }
+//         ]
+//    }''',
+//
+//    buildName: 'holyFrog',
+//    buildNumber: '42'
+//)
+//	}
+//}	
 		
 		
 
