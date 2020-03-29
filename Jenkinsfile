@@ -27,6 +27,14 @@ pipeline
 				bat 'mvn test'
 			}
 		}
+		stage('package stage')
+		{
+			steps
+			{
+				bat 'mvn package'
+			}
+
+		}
 
 
 
@@ -46,18 +54,6 @@ pipeline
         }
 		
 		
-		stage ('Exec Maven') 
-		{
-
-            steps 
-			{
-
-                rtMavenRun (tool: "maven_3_6_0",pom: 'pom.xml',goals: 'package',deployerId: "MAVEN_DEPLOYER",resolverId: "MAVEN_RESOLVER")
-
-            }
-
-        }
-
 
         stage ('Publish build info') {
 
