@@ -3,17 +3,20 @@ agent any
 stages{
 stage('compile stage'){
 steps{
-bat 'mvn clean compile'
+withMaven(maven : 'Apache Maven 3.6.0'){
+bat 'mvn clean compile'}
 }
 }
 stage('testing stage'){
 steps{
-bat 'mvn test'
+withMaven(maven : 'Apache Maven 3.6.0'){
+bat 'mvn test'}
 }
 }
-stage('deployment stage'){
+stage('package stage'){
 steps{
-bat 'mvn deploy'
+withMaven(maven : 'Apache Maven 3.6.0'){
+bat 'mvn package'}
 }
 }
 
