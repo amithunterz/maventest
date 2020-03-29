@@ -201,7 +201,7 @@ stage ('Artifactory configuration') {
 
 
 
-	stage('Upload'){
+	stage('Publish'){
 		steps{
 			rtUpload (
    serverId: 'ArtifactoryImage',
