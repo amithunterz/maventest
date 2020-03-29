@@ -39,7 +39,7 @@ pipeline
 
 
 	stage('Upload'){
-	steps{
+		steps{
 			rtUpload (
     serverId: 'ArtifactoryImage',
     spec: '''{
@@ -63,7 +63,7 @@ steps{
           "files": [
             {
               "pattern": "jenkins-local-maven-repo/",
-              "target": "target/",
+              "target": "target/"
             }
           ]
     }''',
