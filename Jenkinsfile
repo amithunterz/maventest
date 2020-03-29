@@ -61,7 +61,7 @@ pipeline
             steps 
 			{
 
-                rtMavenRun (tool: "MAVEN_HOME",pom: 'my-demo-app/pom.xml',goals: 'package',deployerId: "MAVEN_DEPLOYER",resolverId: "MAVEN_RESOLVER")
+                rtMavenRun (tool: "maven_3_6_0",pom: 'my-demo-app/pom.xml',goals: 'package',deployerId: "MAVEN_DEPLOYER",resolverId: "MAVEN_RESOLVER")
 
             }
 
@@ -76,17 +76,9 @@ pipeline
 
                 rtPublishBuildInfo (serverId: "ArtifactoryImage")
 
-
-
             }
 
-
-
         }
-
-
-
-
 
 	}
 
