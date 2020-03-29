@@ -39,6 +39,7 @@ pipeline
 
 
 	stage('Publish'){
+	steps{
 			rtUpload (
     serverId: 'ArtifactoryImage',
     spec: '''{
@@ -68,7 +69,8 @@ pipeline
     buildName: 'holyFrog',
     buildNumber: '42'
 )
-	}	
+	}
+}	
 		
 		
 
