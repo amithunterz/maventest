@@ -28,32 +28,195 @@ pipeline
 			}
 		}
 	
-		stage('package stage')
-		{
-			steps
-			{
-				bat 'mvn package'
-			}
+//		stage('package stage')
+//		{
+//			steps
+//			{
+//				bat 'mvn package'
+//			}
+//
+//		}
 
-		}
 
 
-	stage('Upload'){
-		steps{
-			rtUpload (
-    serverId: 'ArtifactoryImage',
-    spec: '''{
-          "files": [
-            {
-              "pattern": "**/*.war",
-              "target": "jenkins-local-maven-repo/"
+
+
+
+
+
+stage ('Artifactory configuration') {
+
+
+
+            steps {
+
+
+
+                rtMavenDeployer (
+
+
+
+                    id: "MAVEN_DEPLOYER",
+
+
+
+                    serverId: "ArtifactoryImage",
+
+
+
+                    releaseRepo: "jenkins-local-maven-repo",
+
+
+
+                    snapshotRepo: "jenkins-local-maven-repo"
+
+
+
+                )
+
+
+
+
+
+
+
+                rtMavenResolver (
+
+
+
+                    id: "MAVEN_RESOLVER",
+
+
+
+                    serverId: "ArtifactoryImage",
+
+
+
+                    releaseRepo: "jenkins-local-maven-repo",
+
+
+
+                    snapshotRepo: "jenkins-local-maven-repo"
+
+
+
+                )
+
+
+
             }
-         ]
-    }''',
- 
-    buildName: 'holyFrog',
-    buildNumber: '42'
-)}}
+
+
+
+        }
+
+
+
+
+
+
+
+        stage ('Exec Maven') {
+
+
+
+            steps {
+
+
+
+                rtMavenRun (
+
+
+
+                    tool: MAVEN_TOOL, // Tool name from Jenkins configuration
+
+
+
+                    pom: 'pom.xml',
+
+
+
+                    goals: 'clean install',
+
+
+
+                    deployerId: "MAVEN_DEPLOYER",
+
+
+
+                    resolverId: "MAVEN_RESOLVER"
+
+
+
+                )
+
+
+
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+        stage ('Publish build info') {
+
+
+
+            steps {
+
+
+
+                rtPublishBuildInfo (
+
+
+
+                    serverId: "ArtifactoryImage"
+
+
+
+                )
+
+
+
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+//	stage('Upload'){
+//		steps{
+//			rtUpload (
+ //   serverId: 'ArtifactoryImage',
+ //   spec: '''{
+  //        "files": [
+ //           {
+ //             "pattern": "**/*.war",
+ //             "target": "jenkins-local-maven-repo/"
+ //           }
+ //        ]
+ //   }''',
+// 
+//    buildName: 'holyFrog',
+//    buildNumber: '42'
+//)}}
 
 //stage('Download'){
 //steps{
