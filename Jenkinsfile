@@ -61,7 +61,7 @@ pipeline
             steps 
 			{
 
-                rtMavenRun (tool: MAVEN_HOME,pom: 'my-demo-app/pom.xml',goals: 'package',deployerId: "MAVEN_DEPLOYER",resolverId: "MAVEN_RESOLVER")
+                rtMavenRun (tool: "MAVEN_HOME",pom: 'my-demo-app/pom.xml',goals: 'package',deployerId: "MAVEN_DEPLOYER",resolverId: "MAVEN_RESOLVER")
 
             }
 
