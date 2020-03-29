@@ -128,7 +128,7 @@ stage ('Artifactory configuration') {
 
 
 
-                    tool: MAVEN_TOOL, // Tool name from Jenkins configuration
+                    tool: 'maven_3_6_0', // Tool name from Jenkins configuration
 
 
 
