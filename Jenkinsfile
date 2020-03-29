@@ -27,6 +27,7 @@ pipeline
 				bat 'mvn test'
 			}
 		}
+	
 		stage('package stage')
 		{
 			steps
@@ -37,35 +38,39 @@ pipeline
 		}
 
 
-
-
-		stage ('Artifactory configuration') 
-		{
-
-            steps 
-			{	
-
-                rtMavenDeployer (id:"MAVEN_DEPLOYER",serverId:"ArtifactoryImage",releaseRepo:"jenkins-local-maven-repo",snapshotRepo:"jenkins-local-maven-repo")
-
-                rtMavenResolver (id:"MAVEN_RESOLVER",serverId:"ArtifactoryImage",releaseRepo:"jenkins-local-maven-repo",snapshotRepo:"jenkins-local-maven-repo")
-				
+	stage('Publish'){
+			rtUpload (
+    serverId: 'ArtifactoryImage',
+    spec: '''{
+          "files": [
+            {
+              "pattern": "**\*.war",
+              "target": "jenkins-local-maven-repo/"
             }
+         ]
+    }''',
+ 
+    buildName: 'holyFrog',
+    buildNumber: '42'
+)
+		
+		rtDownload (
+    serverId: 'ArtifactoryImage',
+    spec: '''{
+          "files": [
+            {
+              "pattern": "jenkins-local-maven-repo/",
+              "target": "target/",
+            }
+          ]
+    }''',
 
-        }
+    buildName: 'holyFrog',
+    buildNumber: '42'
+)
+	}	
 		
 		
-
-        stage ('Publish build info') {
-
-
-
-            steps {
-
-                rtPublishBuildInfo (serverId: "ArtifactoryImage")
-
-            }
-
-        }
 
 	}
 
