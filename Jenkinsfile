@@ -27,15 +27,6 @@ pipeline
 				bat 'mvn test'
 			}
 		}
-		
-		stage('package stage')
-		{
-			steps
-			{
-				bat 'mvn package'
-			}
-
-		}
 
 
 
