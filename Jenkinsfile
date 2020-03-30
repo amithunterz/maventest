@@ -218,6 +218,33 @@ stage ('Artifactory configuration') {
     buildNumber: '42'
 )}}
 
+stage ('Publish build info') {
+
+
+
+            steps {
+
+
+
+                rtPublishBuildInfo (
+
+
+
+                    serverId: "ArtifactoryImage"
+
+
+
+                )
+
+
+
+            }
+
+
+
+        }
+
+
 //stage('Download'){
 //steps{
 //		
