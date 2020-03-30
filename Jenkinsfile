@@ -43,7 +43,7 @@ pipeline
 
 
 
-/*
+
 stage ('Artifactory configuration') {
 
 
@@ -189,7 +189,6 @@ stage ('Artifactory configuration') {
 
 
         }
-*/
 
 
 
@@ -201,6 +200,7 @@ stage ('Artifactory configuration') {
 
 
 
+/*
 	stage('Publish'){
 		steps{
 			rtUpload (
@@ -237,7 +237,7 @@ stage ('Artifactory configuration') {
 //)
 //	}
 //}	
-		
+	*/	
 
 stage('Deploy'){
 steps{
