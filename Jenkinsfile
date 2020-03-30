@@ -43,7 +43,7 @@ pipeline
 
 
 
-
+/*
 stage ('Artifactory configuration') {
 
 
@@ -121,9 +121,6 @@ stage ('Artifactory configuration') {
 
 
             steps {
-			environment {
-    MAVEN_HOME = '/tools/apache-maven-3.6.0'
-}
 
 
 
@@ -192,7 +189,82 @@ stage ('Artifactory configuration') {
 
 
         }
-	
+*/
+
+
+
+
+
+
+
+
+
+
+
+	stage('Publish'){
+		steps{
+			rtUpload (
+   serverId: 'ArtifactoryImage',
+   spec: '''{
+        "files": [
+           {
+             "pattern": "**/*.war",
+             "target": "jenkins-local-maven-repo/"
+           }
+        ]
+   }''',
+
+   buildName: 'holyFrog',
+    buildNumber: '42'
+)}}
+
+stage ('Publish build info') {
+
+
+
+            steps {
+
+
+
+                rtPublishBuildInfo (
+
+
+
+                    serverId: "ArtifactoryImage"
+
+
+
+                )
+
+
+
+            }
+
+
+
+        }
+
+
+//stage('Download'){
+//steps{
+//		
+//		rtDownload (
+//   serverId: 'ArtifactoryImage',
+//    spec: '''{
+//          "files": [
+//            {
+//              "pattern": "jenkins-local-maven-repo/",
+//              "target": "target/"
+//            }
+//         ]
+//    }''',
+//
+//    buildName: 'holyFrog',
+//    buildNumber: '42'
+//)
+//	}
+//}	
+		
 
 stage('Deploy'){
 steps{
