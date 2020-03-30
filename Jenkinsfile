@@ -192,53 +192,6 @@ stage ('Artifactory configuration') {
 
 
 
-
-
-
-
-
-
-
-
-/*
-	stage('Publish'){
-		steps{
-			rtUpload (
-   serverId: 'ArtifactoryImage',
-   spec: '''{
-        "files": [
-           {
-             "pattern": "**/*.war",
-             "target": "jenkins-local-maven-repo/"
-           }
-        ]
-   }''',
-
-   buildName: 'holyFrog',
-    buildNumber: '42'
-)}}
-
-//stage('Download'){
-//steps{
-//		
-//		rtDownload (
-//   serverId: 'ArtifactoryImage',
-//    spec: '''{
-//          "files": [
-//            {
-//              "pattern": "jenkins-local-maven-repo/",
-//              "target": "target/"
-//            }
-//         ]
-//    }''',
-//
-//    buildName: 'holyFrog',
-//    buildNumber: '42'
-//)
-//	}
-//}	
-	*/	
-
 stage('Deploy'){
 steps{
 deploy adapters: [tomcat8(credentialsId: 'ef49973b-9119-4e40-bdc9-269c6609fa5f', path: '', url: 'http://localhost:8082/')], contextPath: 'my-demo-app', onFailure: false, war: '**/*.war'
