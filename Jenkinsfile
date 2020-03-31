@@ -39,11 +39,6 @@ pipeline
 
 
 
-
-
-
-
-/*
 stage ('Artifactory configuration') {
 
 
@@ -53,8 +48,6 @@ stage ('Artifactory configuration') {
 
 
                 rtMavenDeployer (
-
-
 
                     id: "MAVEN_DEPLOYER",
 
@@ -70,38 +63,7 @@ stage ('Artifactory configuration') {
 
                     snapshotRepo: "jenkins-local-maven-repo"
 
-
-
                 )
-
-
-
-
-
-
-
-                rtMavenResolver (
-
-
-
-                    id: "MAVEN_RESOLVER",
-
-
-
-                    serverId: "ArtifactoryImage",
-
-
-
-                    releaseRepo: "jenkins-local-maven-repo",
-
-
-
-                    snapshotRepo: "jenkins-local-maven-repo"
-
-
-
-                )
-
 
 
             }
@@ -142,12 +104,6 @@ stage ('Artifactory configuration') {
 
                     deployerId: "MAVEN_DEPLOYER",
 
-
-
-                    resolverId: "MAVEN_RESOLVER"
-
-
-
                 )
 
 
@@ -169,9 +125,6 @@ stage ('Artifactory configuration') {
 
 
             steps {
-
-
-
                 rtPublishBuildInfo (
 
 
@@ -182,88 +135,9 @@ stage ('Artifactory configuration') {
 
                 )
 
-
-
             }
 
-
-
         }
-*/
-
-
-
-
-
-
-
-
-
-
-
-	stage('Publish'){
-		steps{
-			rtUpload (
-   serverId: 'ArtifactoryImage',
-   spec: '''{
-        "files": [
-           {
-             "pattern": "**/*.war",
-             "target": "jenkins-local-maven-repo/"
-           }
-        ]
-   }''',
-
-   buildName: 'holyFrog',
-    buildNumber: '42'
-)}}
-
-stage ('Publish build info') {
-
-
-
-            steps {
-
-
-
-                rtPublishBuildInfo (
-
-
-
-                    serverId: "ArtifactoryImage"
-
-
-
-                )
-
-
-
-            }
-
-
-
-        }
-
-
-//stage('Download'){
-//steps{
-//		
-//		rtDownload (
-//   serverId: 'ArtifactoryImage',
-//    spec: '''{
-//          "files": [
-//            {
-//              "pattern": "jenkins-local-maven-repo/",
-//              "target": "target/"
-//            }
-//         ]
-//    }''',
-//
-//    buildName: 'holyFrog',
-//    buildNumber: '42'
-//)
-//	}
-//}	
 		
 
 stage('Deploy'){
