@@ -34,120 +34,40 @@ pipeline
 			{
 				bat 'mvn package'
 			}
-
 		}
-
-
-
-stage ('Artifactory configuration') {
-
-
-
+		
+		stage ('Artifactory configuration') {
             steps {
-
-
-
                 rtMavenDeployer (
-
                     id: "MAVEN_DEPLOYER",
-
-
-
                     serverId: "ArtifactoryImage",
-
-
-
                     releaseRepo: "jenkins-local-maven-repo",
-
-
-
                     snapshotRepo: "jenkins-local-maven-repo"
-
                 )
-
-
             }
-
-
-
         }
 
-
-
-
-
-
-
-        stage ('Exec Maven') {
-
-
-
+        stage ('Artifactory Exec Maven') {
             steps {
-
-
-
                 rtMavenRun (
-
-
-
                     tool: "maven_3_6_0", // Tool name from Jenkins configuration
-
-
-
                     pom: 'pom.xml',
-
-
-
                     goals: 'clean package',
-
-
-
                     deployerId: "MAVEN_DEPLOYER",
-
                 )
-
-
-
             }
-
-
-
         }
-
-
-
-
-
-
-
         stage ('Publish build info') {
-
-
-
             steps {
                 rtPublishBuildInfo (
-
-
-
                     serverId: "ArtifactoryImage"
-
-
-
                 )
-
             }
-
         }
-		
-
-stage('Deploy'){
-steps{
-deploy adapters: [tomcat8(credentialsId: 'ef49973b-9119-4e40-bdc9-269c6609fa5f', path: '', url: 'http://localhost:8082/')], contextPath: 'my-demo-app', onFailure: false, war: '**/*.war'
-}
-}
-		
-
+		stage('Deploy'){
+			steps{
+				deploy adapters: [tomcat8(credentialsId: 'ef49973b-9119-4e40-bdc9-269c6609fa5f', path: '', url: 'http://localhost:8082/')], contextPath: 'my-demo-app', onFailure: false, war: '**/*.war'
+			}
+		}	
 	}
-
-
 }
