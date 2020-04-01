@@ -64,7 +64,7 @@ pipeline
                 )
             }
         }
-		stage('Deploy on Docker '){
+		stage('Deploy'){
 			steps{
 				deploy adapters: [tomcat8(credentialsId: 'ef49973b-9119-4e40-bdc9-269c6609fa5f', path: '', url: 'http://localhost:8086/')], contextPath: 'my-demo-app', onFailure: false, war: '**/*.war'
 			}
