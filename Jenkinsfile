@@ -72,7 +72,7 @@ pipeline
 		}
 		stage('GO'){
 			steps{				
-				bat 'start "" "http://localhost:8086/my-demo-app"'
+				bat 'start-process http://localhost:8086/my-demo-app'
 			}
 		}			
 	}
