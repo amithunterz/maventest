@@ -66,8 +66,7 @@ pipeline
         }
 		stage('Deploy'){
 			steps{
-				deploy adapters: [tomcat8(credentialsId: 'd4b2f316-0750-49d2-9718-5fe4afc3f1c5', path: '', url: 'http://localhost:8086/')], contextPath: 'my-demo-app', onFailure: false, war: '**/*.war'
-				bat 'start "" "http://localhost:8086/my-demo-app"'
+				deploy adapters: [tomcat8(credentialsId: 'd4b2f316-0750-49d2-9718-5fe4afc3f1c5', path: '', url: 'http://localhost:8082/')], contextPath: 'my-demo-app', onFailure: false, war: '**/*.war'
 			}
 		}	
 	}
