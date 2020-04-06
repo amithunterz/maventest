@@ -67,7 +67,7 @@ pipeline
 		stage('Docker'){
 			steps{				
 				bat 'docker build -t asramitsinghrawat/mydemoapp .'
-				bat 'docker login docker.io'
+				
 				bat 'docker push asramitsinghrawat/mydemoapp'
 				bat 'docker pull asramitsinghrawat/mydemoapp'
 				bat 'docker run -d --rm -p 8087:8080 asramitsinghrawat/mydemoapp'
