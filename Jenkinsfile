@@ -66,9 +66,10 @@ pipeline
         }
 		stage('Docker'){
 			steps{				
-				
-				bat 'docker pull asramitsinghrawat/test:20200406.122415'
-				bat 'docker run -d --rm -p 8087:8080 asramitsinghrawat/test:20200406.122415'
+				bat 'docker build -t asramitsinghrawat/demoapp .'
+				bat 'docker push asramitsinghrawat/demoapp'
+				bat 'docker pull asramitsinghrawat/demoapp'
+				bat 'docker run -d --rm -p 8087:8080 asramitsinghrawat/demoapp'
 			}
 		}	
 	}
