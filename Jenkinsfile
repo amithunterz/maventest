@@ -1,9 +1,6 @@
 pipeline
 {
-	environment {
- registry = "https://hub.docker.com/repository"
- registryCredential = '--username asramitsinghrawat --password 23d45c3c-fbd1-4deb-b35d-dba8ae218881'
-}
+	
 	agent any
 	stages
 	{
@@ -68,6 +65,7 @@ pipeline
                 )
             }
         }
+		
 		stage('Docker'){
 			steps{				
 				bat 'docker build -t asramitsinghrawat/demoapp .'
