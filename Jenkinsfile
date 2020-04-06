@@ -1,9 +1,6 @@
 pipeline
 {
-	environment {
-    registry = "asramitsinghrawat/devopstraining"
-    registryCredential = 'dockerhub'
-  }
+	
 	
 	agent any
 	stages
@@ -73,6 +70,8 @@ pipeline
 		stage('Docker'){
 			steps{				
 				bat 'docker build -t asramitsinghrawat/devopstraining .'
+				bat 'docker login --username asramitsinghrawat'
+				bat '23d45c3c-fbd1-4deb-b35d-dba8ae218881'
 				bat 'docker push asramitsinghrawat/devopstraining'
 				bat 'docker pull asramitsinghrawat/devopstraining'
 				bat 'docker run -d --rm -p 8087:8080 asramitsinghrawat/devopstraining'
