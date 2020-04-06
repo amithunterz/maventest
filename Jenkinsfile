@@ -67,11 +67,11 @@ pipeline
 		stage('Docker'){
 			steps{				
 				bat 'set YYYYMMDD.HHMMSS=%DATE:~6,4%%DATE:~3,2%%DATE:~0,2%.%TIME:~0,2%%TIME:~3,2%%TIME:~6,2%'
-				bat 'echo %YYYYMMDD.HHMMSS%'
-				bat 'docker build -t asramitsinghrawat/mydemoapp:%YYYYMMDD.HHMMSS% .'
-				bat 'docker push asramitsinghrawat/mydemoapp:%YYYYMMDD.HHMMSS'
-				bat 'docker pull asramitsinghrawat/mydemoapp:%YYYYMMDD.HHMMSS'
-				bat 'docker run -d --rm -p 8087:8080 asramitsinghrawat/mydemoapp:%YYYYMMDD.HHMMSS'
+				
+				bat 'docker build -t asramitsinghrawat/DemoApp:%YYYYMMDD.HHMMSS% .'
+				bat 'docker push asramitsinghrawat/DemoApp:%YYYYMMDD.HHMMSS'
+				bat 'docker pull asramitsinghrawat/DemoApp:%YYYYMMDD.HHMMSS'
+				bat 'docker run -d --rm -p 8087:8080 asramitsinghrawat/DemoApp:%YYYYMMDD.HHMMSS'
 			}
 		}	
 	}
