@@ -65,9 +65,7 @@ pipeline
             }
         }
 		stage('Docker'){
-			steps{
-				#deploy adapters: [tomcat8(credentialsId: 'd4b2f316-0750-49d2-9718-5fe4afc3f1c5', path: '', url: 'http://localhost:8082/')], contextPath: 'my-demo-app', onFailure: false, war: '**/*.war'
-				
+			steps{				
 				bat 'set YYYYMMDD.HHMMSS=%DATE:~6,4%%DATE:~3,2%%DATE:~0,2%.%TIME:~0,2%%TIME:~3,2%%TIME:~6,2%'
 				bat 'echo %YYYYMMDD.HHMMSS%'
 				bat 'docker build -t asramitsinghrawat/mydemoapp:%YYYYMMDD.HHMMSS% .'
